@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "kumbh-sans-regular";
+  src: url("KumbhSans-Regular.woff2") format("woff2"),
+    url("KumbhSans-Regular.woff") format("woff"),
+    url("KumbhSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
