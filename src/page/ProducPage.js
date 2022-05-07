@@ -13,7 +13,11 @@ import {
 export const ProducPage = ({ data: { images, information } }) => {
   return (
     <Layout>
-      <Container>
+      <Container
+        sx={{
+          pb: "3em",
+        }}
+      >
         <ShowCaseImage data={images} />
         <InformationBlock data={information} />
       </Container>

@@ -1,8 +1,5 @@
 import React from "react";
 
-// theme
-import { theme } from "src/theme";
-
 // Local Components
 import { Box, Heading, Paragraph, Button, Image } from "src/components";
 

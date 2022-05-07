@@ -88,8 +88,18 @@ export const theme = {
       justifyContent: "center",
       alignItems: "center",
     },
+    circlePrimary: {
+      bg: "white",
+      color: "darkGray",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      aspectRatio: "1/1",
+      borderRadius: "circle",
+    },
   },
   radii: {
     card: "12px",
+    circle: "50%",
   },
 };
