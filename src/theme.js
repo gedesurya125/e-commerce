@@ -68,7 +68,17 @@ export const theme = {
     muted: "#f6f6f6",
   },
   buttons: {
-    primary: {},
+    primary: {
+      bg: "primary",
+      color: "white",
+      borderRadius: "card",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      fontFamily: "heading",
+      fontSize: 1,
+      p: "1.1em 1.4em 1.1em 1.4em",
+    },
     secondary: {},
     clear: {
       bg: "transparent",
@@ -76,10 +86,10 @@ export const theme = {
       color: "text",
       display: "flex",
       justifyContent: "center",
-      // alignItems: "center",
+      alignItems: "center",
     },
   },
   radii: {
-    card: ''
-  }
+    card: "12px",
+  },
 };

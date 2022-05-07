@@ -1,7 +1,15 @@
 import React from "react";
 
+// theme
+import { theme } from "src/theme";
+
 // Local Components
-import { Box, Heading, Paragraph, Button } from "src/components";
+import { Box, Heading, Paragraph, Button, Image } from "src/components";
+
+// Assets
+import plusIcon from "src/assets/images/icon-plus.svg";
+import minusIcon from "src/assets/images/icon-minus.svg";
+import whiteCartIcon from "src/assets/images/icon-cart white.svg";
 
 export const InformationBlock = ({
   data: { companyName, title, description, price, discount },
@@ -17,6 +25,8 @@ export const InformationBlock = ({
       <ProductTitle text={title} />
       <Description text={description} />
       <PriceBlock price={price} discount={discount} />
+      <ItemCounter />
+      <AddToCartButton />
     </Box>
   );
 };
@@ -129,39 +139,52 @@ const OriginalPrice = ({ price }) => {
   );
 };
 
-const CountAndButton = () => {
-  return (
-    <Box>
-      <ItemCount />
-    </Box>
-  );
-};
-const ItemCount = () => {
+const ItemCounter = () => {
   return (
     <Box
       className="item-count"
       sx={{
         bg: "lightgray",
-        borderRadius: "5px",
+        borderRadius: "card",
         overflow: "hidden",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        mt: "8%",
       }}
     >
-      <CountButton symbol="-" />
-      <Paragraph>0</Paragraph>
-      <CountButton symbol="+" />
+      <CountButton icon={minusIcon} />
+      <Paragraph variant="originalPrice">0</Paragraph>
+      <CountButton icon={plusIcon} />
     </Box>
   );
 };
 
-const CountButton = ({ symbol }) => {
-  <Button variant="clear" sx={{ color: "primary", flexBasis: "20%" }}>
-    {symbol}
-  </Button>;
+const CountButton = ({ icon }) => {
+  return (
+    <Button
+      variant="clear"
+      sx={{
+        color: "primary",
+        fontSize: "2em",
+        p: "0.6em 0.7em 0.6em 0.7em",
+      }}
+    >
+      <Image src={icon} />
+    </Button>
+  );
 };
 
 const AddToCartButton = () => {
-  <Button variant="primary" sx={{ color: "white", bg: "primary" }}></Button>;
+  return (
+    <Button variant="primary" sx={{ width: "100%", mt: "8%" }}>
+      <Image
+        src={whiteCartIcon}
+        sx={{
+          mr: "1em",
+        }}
+      />
+      <span>Add to cart</span>
+    </Button>
+  );
 };
