@@ -11,6 +11,8 @@ import whiteCartIcon from "src/assets/images/icon-cart white.svg";
 export const InformationBlock = ({
   data: { companyName, title, description, price, discount },
 }) => {
+  const [ammount, setAmmount] = React.useState(1);
+
   return (
     <Box
       className="information-block"
@@ -21,8 +23,8 @@ export const InformationBlock = ({
       <CompanyName text={companyName} />
       <ProductTitle text={title} />
       <Description text={description} />
-      <PriceBlock price={price} discount={discount} />
-      <ItemCounter />
+      <PriceBlock price={price * ammount} discount={discount} />
+      <ItemCounter ammount={ammount} setAmmount={setAmmount} />
       <AddToCartButton />
     </Box>
   );
@@ -136,7 +138,12 @@ const OriginalPrice = ({ price }) => {
   );
 };
 
-const ItemCounter = () => {
+const ItemCounter = ({ ammount, setAmmount }) => {
+  const handleAmmountChange = (direction) => {
+    let newAmmount = ammount + direction;
+    if (newAmmount < 1) return;
+    setAmmount(newAmmount);
+  };
   return (
     <Box
       className="item-count"
@@ -150,14 +157,14 @@ const ItemCounter = () => {
         mt: "8%",
       }}
     >
-      <CountButton icon={minusIcon} />
-      <Paragraph variant="originalPrice">0</Paragraph>
-      <CountButton icon={plusIcon} />
+      <CountButton icon={minusIcon} onClick={() => handleAmmountChange(-1)} />
+      <Paragraph variant="originalPrice">{ammount}</Paragraph>
+      <CountButton icon={plusIcon} onClick={() => handleAmmountChange(1)} />
     </Box>
   );
 };
 
-const CountButton = ({ icon }) => {
+const CountButton = ({ icon, ...props }) => {
   return (
     <Button
       variant="clear"
@@ -166,6 +173,7 @@ const CountButton = ({ icon }) => {
         fontSize: "2em",
         p: "0.6em 0.7em 0.6em 0.7em",
       }}
+      {...props}
     >
       <Image src={icon} />
     </Button>

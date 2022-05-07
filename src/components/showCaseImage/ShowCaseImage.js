@@ -46,7 +46,7 @@ export const ShowCaseImage = ({ data }) => {
         icon={prevIcon}
         onClick={() => handleNavigationClick(-1)}
       />
-      <AnimatePresence custom={direction}>
+      <AnimatePresence custom={direction} initial={false}>
         <Image
           sx={{ position: "absolute" }}
           alt="product-image"
