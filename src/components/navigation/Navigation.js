@@ -1,29 +1,32 @@
 import React from "react";
 
 // Local Components
-import { Container, Box } from "..";
+import { Container, Box, useMenuOverlay, MenuOverlay } from "src/components";
 
 // Self Components
 import { MenuButton, Logo, CartButton, Avatar } from ".";
 
 export const Navigation = () => {
+  const [overlayProps, overlayControls] = useMenuOverlay();
+
   return (
     <Container
       className="navigation"
       sx={{
-        height: "3.7em",
+        minHeight: "3.7em",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
       }}
     >
-      <LeftGroup />
+      <LeftGroup openOverlay={overlayControls.openOverlay} />
       <RightGroup />
+      <MenuOverlay {...overlayProps} />
     </Container>
   );
 };
 
-const LeftGroup = () => {
+const LeftGroup = ({ openOverlay }) => {
   return (
     <Box
       className="navigation__left-group"
@@ -33,7 +36,7 @@ const LeftGroup = () => {
         alignItems: "center",
       }}
     >
-      <MenuButton />
+      <MenuButton onClick={openOverlay} />
       <Logo />
     </Box>
   );

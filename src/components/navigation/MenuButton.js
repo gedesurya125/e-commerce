@@ -1,8 +1,8 @@
 import React from "react";
-import { Button, Box, Image } from "src/components";
+import { Button, Image } from "src/components";
 import menuIcon from "src/assets/images/icon-menu.svg";
 
-export const MenuButton = () => {
+export const MenuButton = ({ ...props }) => {
   return (
     <Button
       variant="clear"
@@ -14,6 +14,7 @@ export const MenuButton = () => {
         justifyContent: "center",
         alignItems: "center",
       }}
+      {...props}
     >
       <Image src={menuIcon} />
     </Button>

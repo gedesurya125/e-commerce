@@ -55,6 +55,16 @@ export const theme = {
       lineHeight: "heading",
     },
   },
+  links: {
+    overlayLink: {
+      fontFamily: "heading",
+      fontSize: 3,
+      lineHeight: "heading",
+      textDecoration: "none",
+      color: "dark",
+      py: "0.5em",
+    },
+  },
   colors: {
     text: "#000",
     background: "#fff",

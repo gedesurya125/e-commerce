@@ -14,7 +14,8 @@ export const Avatar = () => {
         aspectRatio: "1/1",
         borderRadius: "50%",
         overflow: "hidden",
-        width: "20%",
+        width: "32%",
+        p: "5%",
       }}
     >
       <Image
