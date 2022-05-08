@@ -54,6 +54,11 @@ export const theme = {
       fontFamily: "body",
       lineHeight: "heading",
     },
+    notification: {
+      fontFamily: "heading",
+      lineHeight: 1,
+      fontSize: "0.6em",
+    },
   },
   links: {
     overlayLink: {

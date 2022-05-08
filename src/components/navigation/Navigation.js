@@ -1,5 +1,8 @@
 import React from "react";
 
+// Context
+import { ProductContext } from "src/context";
+
 // Local Components
 import { Container, Box, useMenuOverlay, MenuOverlay } from "src/components";
 
@@ -8,6 +11,7 @@ import { MenuButton, Logo, CartButton, Avatar } from ".";
 
 export const Navigation = () => {
   const [overlayProps, overlayControls] = useMenuOverlay();
+  const { products, dispatch } = React.useContext(ProductContext);
 
   return (
     <Container
@@ -43,6 +47,9 @@ const LeftGroup = ({ openOverlay }) => {
 };
 
 const RightGroup = () => {
+  const { products } = React.useContext(ProductContext);
+  const getTotalAmmount = () =>
+    products.reduce((acc, cur) => acc + cur.ammount, 0);
   return (
     <Box
       className="navigation__right-group"
@@ -52,7 +59,7 @@ const RightGroup = () => {
         alignItems: "center",
       }}
     >
-      <CartButton />
+      <CartButton ammount={getTotalAmmount()} />
       <Avatar />
     </Box>
   );

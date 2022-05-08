@@ -18,7 +18,6 @@ export const Overlay = ({ children, handleCloseOverlay, ...props }) => {
 
 const OverlayBackground = ({ children, handleCloseOverlay, ...props }) => {
   // Stop Parent onClick event propagation to the childrens
-
   const handleBackgroundClick = (e) => {
     if (e.target !== e.currentTarget) return;
     handleCloseOverlay();
@@ -39,6 +38,8 @@ const OverlayBackground = ({ children, handleCloseOverlay, ...props }) => {
   }, [handleCloseOverlay]);
   return (
     <Box
+      role="dialog"
+      aria-modal="true"
       className="overlay-background"
       onClick={handleBackgroundClick}
       sx={{

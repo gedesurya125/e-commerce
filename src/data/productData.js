@@ -8,6 +8,7 @@ import image3 from "src/assets/images/image-product-3.jpg";
 import image4 from "src/assets/images/image-product-4.jpg";
 
 export const productData = {
+  id: 1,
   images: [
     {
       hiRes: image1,

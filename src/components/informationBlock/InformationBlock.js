@@ -3,15 +3,29 @@ import React from "react";
 // Local Components
 import { Box, Heading, Paragraph, Button, Image } from "src/components";
 
+// Context
+import { ProductContext, addToCart, ProductOnCart } from "src/context";
+
 // Assets
 import plusIcon from "src/assets/images/icon-plus.svg";
 import minusIcon from "src/assets/images/icon-minus.svg";
 import whiteCartIcon from "src/assets/images/icon-cart white.svg";
 
-export const InformationBlock = ({
-  data: { companyName, title, description, price, discount },
-}) => {
+export const InformationBlock = ({ data: { id, images, information } }) => {
+  const { companyName, title, description, price, discount } = information;
   const [ammount, setAmmount] = React.useState(1);
+  const { dispatch } = React.useContext(ProductContext);
+  // Function
+  const handleAddToCart = () => {
+    const productToAdd = new ProductOnCart(
+      id,
+      title,
+      images[0].thumbnail,
+      price,
+      ammount
+    );
+    dispatch(addToCart(productToAdd));
+  };
 
   return (
     <Box
@@ -25,7 +39,7 @@ export const InformationBlock = ({
       <Description text={description} />
       <PriceBlock price={price * ammount} discount={discount} />
       <ItemCounter ammount={ammount} setAmmount={setAmmount} />
-      <AddToCartButton />
+      <AddToCartButton onClick={handleAddToCart} />
     </Box>
   );
 };
@@ -180,9 +194,9 @@ const CountButton = ({ icon, ...props }) => {
   );
 };
 
-const AddToCartButton = () => {
+const AddToCartButton = ({ ...props }) => {
   return (
-    <Button variant="primary" sx={{ width: "100%", mt: "8%" }}>
+    <Button variant="primary" sx={{ width: "100%", mt: "8%" }} {...props}>
       <Image
         src={whiteCartIcon}
         sx={{

@@ -10,7 +10,7 @@ import {
 
 // Data
 
-export const ProducPage = ({ data: { images, information } }) => {
+export const ProducPage = ({ data }) => {
   return (
     <Layout>
       <Container
@@ -18,8 +18,8 @@ export const ProducPage = ({ data: { images, information } }) => {
           pb: "3em",
         }}
       >
-        <ShowCaseImage data={images} />
-        <InformationBlock data={information} />
+        <ShowCaseImage data={data.images} />
+        <InformationBlock data={data} />
       </Container>
     </Layout>
   );
