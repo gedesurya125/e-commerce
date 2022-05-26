@@ -9,23 +9,25 @@ import { Button, Image, Paragraph } from "src/components";
 // Assets
 import cartIcon from "src/assets/images/icon-cart.svg";
 
-export const CartButton = ({ ammount = 0 }) => {
+export const CartButton = ({ ammount = 0, ...props }) => {
   return (
     <Button
+      className="cart-button"
       variant="clear"
       sx={{
-        mr: "15%",
         position: "relative",
+        width: ["1.4em", "1.9em"],
+        // flex: 1,
       }}
+      {...props}
     >
-      <Image src={cartIcon} />
+      <Image src={cartIcon} sx={{ width: "100%" }} />
       <NotificationNumber ammount={ammount} />
     </Button>
   );
 };
 
 const NotificationNumber = ({ ammount }) => {
-  console.log("this is the number of notification", ammount);
   return (
     <AnimatePresence>
       {ammount !== 0 && (
@@ -36,8 +38,8 @@ const NotificationNumber = ({ ammount }) => {
             bg: "primary",
             color: "white",
             position: "absolute",
-            top: -10,
-            right: -10,
+            top: "-1em",
+            right: "-1em",
             borderRadius: "8px",
           }}
           // Animation Values

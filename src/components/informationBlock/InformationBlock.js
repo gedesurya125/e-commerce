@@ -168,6 +168,7 @@ const ItemCounter = ({ ammount, setAmmount }) => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        variant: "text.originalPrice",
         mt: "8%",
       }}
     >

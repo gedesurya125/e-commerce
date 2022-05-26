@@ -7,16 +7,20 @@ import { Box } from "src/components";
 // Portal Element
 const portalRoot = document.getElementById("portal");
 
-export const Overlay = ({ children, handleCloseOverlay, ...props }) => {
+export const Overlay = ({ children, handleCloseOverlay, sx, ...props }) => {
   return ReactDOM.createPortal(
-    <OverlayBackground handleCloseOverlay={handleCloseOverlay} {...props}>
+    <OverlayBackground
+      handleCloseOverlay={handleCloseOverlay}
+      sx={sx}
+      {...props}
+    >
       {children}
     </OverlayBackground>,
     portalRoot
   );
 };
 
-const OverlayBackground = ({ children, handleCloseOverlay, ...props }) => {
+const OverlayBackground = ({ children, handleCloseOverlay, sx, ...props }) => {
   // Stop Parent onClick event propagation to the childrens
   const handleBackgroundClick = (e) => {
     if (e.target !== e.currentTarget) return;
@@ -51,6 +55,7 @@ const OverlayBackground = ({ children, handleCloseOverlay, ...props }) => {
         bg: "rgba(0,0,0,0.75)",
         zIndex: 100,
         overflow: "auto",
+        ...sx,
       }}
       {...props}
     >

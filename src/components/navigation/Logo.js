@@ -9,11 +9,13 @@ export const Logo = () => {
     <Box
       className="navigation__logo"
       sx={{
-        width: "76%",
-        ml: "10%",
+        width: ["8em", "12em"],
+        display: "flex",
+        alignItems: "center",
+        ml: "1em",
       }}
     >
-      <Image src={logo} />
+      <Image src={logo} sx={{ width: "100%" }} />
     </Box>
   );
 };

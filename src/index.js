@@ -3,7 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "theme-ui";
-import { theme } from "./theme";
+import { theme } from "./theme/theme";
+import "./index.css";
 
 // Fonts Import
 import "./assets/fonts/KumbhSans/bold/stylesheet.css";

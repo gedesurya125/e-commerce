@@ -7,16 +7,13 @@ export const MenuButton = ({ ...props }) => {
     <Button
       variant="clear"
       sx={{
-        display: "flex",
-        flexDirection: "column",
         aspectRatio: "1.2/1",
-        width: "1em",
-        justifyContent: "center",
-        alignItems: "center",
+        pl: 0,
+        width: ["1.1em", "1.5em"],
       }}
       {...props}
     >
-      <Image src={menuIcon} />
+      <Image src={menuIcon} sx={{ width: "100%" }} />
     </Button>
   );
 };

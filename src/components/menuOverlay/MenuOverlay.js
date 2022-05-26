@@ -27,7 +27,7 @@ export const MenuOverlay = ({ showOverlay, closeOverlay }) => {
           <Box
             sx={{
               height: "100%",
-              width: "67%",
+              width: ["67%", "40%", ""],
               bg: "white",
               py: "1.5em",
               px: "6%",
