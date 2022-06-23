@@ -1,23 +1,22 @@
-import React from "react";
+import React from 'react';
 
 // External Components
-import { AnimatePresence } from "framer-motion";
-
-// Local Components
+import { AnimatePresence } from 'framer-motion';
 import {
-  Overlay,
   Box,
-  Heading,
   Divider,
-  Image,
+  Heading,
   Paragraph,
   Button,
-} from "src/components";
+  Image
+} from '@gedesurya125/surya-ui';
+// Local Components
+import { Overlay } from 'components';
 
-import { removeFromCart, ProductContext } from "src/context";
+import { removeFromCart, ProductContext } from 'context';
 
 // Assets
-import deleteIcon from "src/assets/images/icon-delete.svg";
+import deleteIcon from 'assets/images/icon-delete.svg';
 
 export const CartOverlay = ({ showOverlay, closeOverlay, products }) => {
   return (
@@ -26,22 +25,28 @@ export const CartOverlay = ({ showOverlay, closeOverlay, products }) => {
         <Overlay
           handleCloseOverlay={closeOverlay}
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "flex-start",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'flex-start'
           }}
         >
           <Box
             className="cart"
             sx={{
-              bg: "white",
-              width: "95%",
-              borderRadius: "card",
-              mt: "10em",
+              bg: 'white',
+              width: '95%',
+              borderRadius: '0.6rem',
+              mt: '10rem'
             }}
           >
             <TitleBar />
-            <Divider sx={{ m: 0, borderBottom: "0.5px solid" }} />
+            <Divider
+              sx={{
+                m: 0,
+                borderBottom: 'solid',
+                borderWidth: 'clamp(1px, 0.1rem, 2px)'
+              }}
+            />
             <Basket products={products} />
           </Box>
         </Overlay>
@@ -53,7 +58,13 @@ export const CartOverlay = ({ showOverlay, closeOverlay, products }) => {
 const TitleBar = () => {
   return (
     <ContentContainer>
-      <Heading as="h3" variant="originalPrice">
+      <Heading
+        as="h3"
+        sx={{
+          fontSize: '1.3rem',
+          fontFamily: 'primary'
+        }}
+      >
         Cart
       </Heading>
     </ContentContainer>
@@ -67,7 +78,7 @@ const Basket = ({ products }) => {
           {products.map((product) => (
             <ItemCard data={product} />
           ))}
-          <Button variant="primary" sx={{ width: "100%", mt: "1.8em" }}>
+          <Button variant="primary" sx={{ width: '100%', mt: '1.8em' }}>
             Checkout
           </Button>
         </>
@@ -75,8 +86,13 @@ const Basket = ({ products }) => {
     }
     return (
       <Paragraph
-        variant="originalPrice"
-        sx={{ color: "darkGray", lineHeight: "9em", textAlign: "center" }}
+        sx={{
+          color: 'darkGray',
+          lineHeight: '9em',
+          textAlign: 'center',
+          fontFamily: 'primary',
+          fontSize: '1.5rem'
+        }}
       >
         Your cart is empty
       </Paragraph>
@@ -96,50 +112,56 @@ const ItemCard = ({ data: { id, image, name, price = 0, ammount } }) => {
     <Box
       className="item-card"
       sx={{
-        display: "flex",
-        alignItems: "center",
+        display: 'flex',
+        alignItems: 'center'
       }}
     >
       <Image
         src={image}
         sx={{
-          aspectRatio: "1/1",
-          flexBasis: "16%",
-          borderRadius: "thumbnail",
+          aspectRatio: '1/1',
+          flexBasis: '16%',
+          borderRadius: '0.5rem'
         }}
       />
       <Box
         sx={{
-          width: "60%",
-          justifySelf: "flex-start",
-          ml: "5%",
+          width: '60%',
+          justifySelf: 'flex-start',
+          ml: '5%'
         }}
       >
         <Paragraph
-          variant="productDescription"
           sx={{
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            color: "gray",
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            color: 'darkGray',
+            fontSize: '1.5rem'
           }}
         >
           {name}
         </Paragraph>
         <Paragraph
-          variant="productDescription"
           sx={{
-            color: "gray",
-            "& > span": {
-              color: "darkGray",
-            },
+            mt: ['0.3rem'],
+            fontSize: '1.3rem',
+            color: 'darkGray',
+            '& > span': {
+              color: 'dark',
+              fontFamily: 'primary'
+            }
           }}
         >
           {`$${price.toFixed(2)} x ${ammount} `}
           <span>${(price * ammount).toFixed(2)}</span>
         </Paragraph>
       </Box>
-      <Button variant="clear" sx={{ ml: "auto" }} onClick={handleDeleteItem}>
+      <Button
+        variant="clear"
+        sx={{ ml: 'auto', width: '1.2rem' }}
+        onClick={handleDeleteItem}
+      >
         <Image src={deleteIcon} />
       </Button>
     </Box>
@@ -153,7 +175,7 @@ const ContentContainer = ({ children }) => {
     <Box
       className="content-container"
       sx={{
-        p: "1.5em 1.5em",
+        p: '1.5em 1.5em'
       }}
     >
       {children}

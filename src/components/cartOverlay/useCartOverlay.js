@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 // Context
-import { ProductContext } from "src/context";
+import { ProductContext } from 'context';
 
 export const useCartOverlay = () => {
   const { products, dispatch } = React.useContext(ProductContext);
@@ -18,6 +18,6 @@ export const useCartOverlay = () => {
     // Overlay Props
     { showOverlay, closeOverlay, products, dispatch },
     //Overlay Controls
-    { openOverlay, closeOverlay },
+    { openOverlay, closeOverlay }
   ];
 };

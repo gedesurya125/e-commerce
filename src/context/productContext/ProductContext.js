@@ -1,10 +1,14 @@
-import React from "react";
+import React from 'react';
 
 // Reducer
-import { reducer, initialValues } from "./reducer";
+import { reducer, initialValues } from './reducer';
 
 // CONTEXT PROVIDER
 export const ProductContext = React.createContext();
+
+export const useProductContext = () => {
+  return React.useContext(ProductContext);
+};
 
 // PRODUCT PROVIDER
 export const ProductContextProvider = ({ children }) => {

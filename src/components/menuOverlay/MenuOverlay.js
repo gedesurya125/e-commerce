@@ -1,15 +1,18 @@
-import React from "react";
+import React from 'react';
 
 // Local Components
-import { Box, Overlay, Button, Image, Link } from "src/components";
-import { AnimatePresence } from "framer-motion";
+import { Overlay } from 'components';
+
+// External Components
+import { Box, Button, Image, Link } from '@gedesurya125/surya-ui';
+import { AnimatePresence } from 'framer-motion';
 
 // Assets
-import closeIcon from "src/assets/images/icon-close.svg";
-import { navigationData } from "src/data";
+import closeIcon from 'assets/images/icon-close.svg';
+import { navigationData } from 'data';
 
 // Animation
-import { revealMenuContainer, revealOverlayBackground } from "./animation";
+import { revealMenuContainer, revealOverlayBackground } from './animation';
 
 export const MenuOverlay = ({ showOverlay, closeOverlay }) => {
   const { links } = navigationData;
@@ -26,11 +29,11 @@ export const MenuOverlay = ({ showOverlay, closeOverlay }) => {
         >
           <Box
             sx={{
-              height: "100%",
-              width: ["67%", "40%", ""],
-              bg: "white",
-              py: "1.5em",
-              px: "6%",
+              height: '100%',
+              width: ['67%', '40%', ''],
+              bg: 'white',
+              py: '2.5rem',
+              px: '6%'
             }}
             variants={revealMenuContainer}
           >
@@ -47,13 +50,22 @@ const Links = ({ links }) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        mt: "22%",
+        display: 'flex',
+        flexDirection: 'column',
+        mt: '22%'
       }}
     >
       {links.map((link) => (
-        <Link variant="overlayLink" href={link.to}>
+        <Link
+          href={link.to}
+          sx={{
+            fontFamily: 'primary',
+            textDecoration: 'none',
+            color: 'dark',
+            fontSize: '1.5rem',
+            py: ['1rem']
+          }}
+        >
           {link.title}
         </Link>
       ))}
@@ -66,7 +78,7 @@ const CloseButton = ({ ...props }) => {
     <Button
       variant="clear"
       sx={{
-        width: "1em",
+        width: '2rem'
       }}
       {...props}
     >

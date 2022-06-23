@@ -1,14 +1,19 @@
-import { Box } from "src/components";
-import { ProducPage } from "./page/ProducPage";
+import ProductPage from 'page/productPage';
+import { ThemeProvider, Box } from '@gedesurya125/surya-ui';
+import { theme, themeConfigs } from 'theme';
+import { ProductContextProvider } from 'context';
 
 // Data source
-import { productData } from "src/data";
 
 function App() {
   return (
-    <Box className="App">
-      <ProducPage data={productData} />
-    </Box>
+    <ProductContextProvider>
+      <ThemeProvider theme={theme} config={themeConfigs}>
+        <Box className="App">
+          <ProductPage />
+        </Box>
+      </ThemeProvider>
+    </ProductContextProvider>
   );
 }
 

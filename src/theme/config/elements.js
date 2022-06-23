@@ -1,49 +1,56 @@
+const buttonDefaults = {
+  cursor: 'pointer'
+};
+
 export const links = {
   overlayLink: {
-    fontFamily: "heading",
+    fontFamily: 'primary',
     fontSize: 3,
-    lineHeight: "heading",
-    textDecoration: "none",
-    color: "dark",
-    py: "0.5em",
+    lineHeight: 'primary',
+    textDecoration: 'none',
+    color: 'dark',
+    py: '0.5em'
   },
   navigationLink: {
-    fontFamily: "heading",
+    fontFamily: 'primary',
     fontSize: 1,
-    lineHeight: "heading",
-    textDecoration: "none",
-    color: "gray",
-  },
+    lineHeight: 'primary',
+    textDecoration: 'none',
+    color: 'gray'
+  }
 };
 export const buttons = {
   primary: {
-    bg: "primary",
-    color: "white",
-    borderRadius: "card",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontFamily: "heading",
-    fontSize: 1,
-    variant: "text.originalPrice",
-    p: "1.1em 1.4em 1.1em 1.4em",
+    ...buttonDefaults,
+    bg: 'primary',
+    color: 'white',
+    borderRadius: '0.7rem',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'primary',
+    fontSize: ['1.3rem', '1.8rem'],
+    variant: 'text.originalPrice',
+    p: ['1.5rem 1.4rem 1.5rem 1.4rem', '2rem']
   },
   secondary: {},
   clear: {
-    bg: "transparent",
+    ...buttonDefaults,
+    bg: 'transparent',
     p: 0,
-    color: "text",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    color: 'text',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   circlePrimary: {
-    bg: "white",
-    color: "darkGray",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    aspectRatio: "1/1",
-    borderRadius: "circle",
-  },
+    bg: 'white',
+    color: 'darkGray',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    aspectRatio: '1/1',
+    borderRadius: '50%',
+    p: 0
+  }
 };

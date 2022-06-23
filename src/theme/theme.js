@@ -1,23 +1,9 @@
-import {
-  text,
-  breakpoints,
-  layout,
-  fonts,
-  lineHeights,
-  colors,
-  radii,
-  buttons,
-  links,
-} from "./config";
+import { text, fonts, colors, buttons, links } from './config';
 
 export const theme = {
-  breakpoints,
-  layout,
   fonts,
-  lineHeights,
   text,
   colors,
-  radii,
   buttons,
-  links,
+  links
 };

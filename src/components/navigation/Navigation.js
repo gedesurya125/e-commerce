@@ -1,112 +1,165 @@
-import React from "react";
-
-// Context
-import { ProductContext } from "src/context";
-
-// Local Components
+import React from 'react';
+// External components
 import {
-  Container,
+  Image,
+  Button,
+  GridTemplate,
   Box,
-  useMenuOverlay,
+  Paragraph
+} from '@gedesurya125/surya-ui';
+import { AnimatePresence } from 'framer-motion';
+
+// Local components
+import {
   MenuOverlay,
   CartOverlay,
-  useCartOverlay,
-  Link,
-} from "src/components";
+  useMenuOverlay,
+  useCartOverlay
+} from 'components';
+
+// Context
+import { useProductContext } from 'context';
 
 // Assets
-import { navigationData } from "src/data";
-
-// Self Components
-import { MenuButton, Logo, CartButton, Avatar } from ".";
+import menuIcon from 'assets/images/icon-menu.svg';
+import logo from 'assets/images/logo.svg';
+import cartIcon from 'assets/images/icon-cart.svg';
+import avatarImage from 'assets/images/image-avatar.png';
+// Animation
+import { notification } from './animation';
 
 export const Navigation = () => {
+  const { products } = useProductContext();
+  console.log('this is the product', products);
   const [overlayProps, overlayControls] = useMenuOverlay();
   const [cartOverlayProps, cartOverlayControls] = useCartOverlay();
 
   return (
-    <Container
+    <GridTemplate
       className="navigation"
       sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        py: "1em",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        py: '2rem'
       }}
     >
-      <LeftGroup
-        openOverlay={overlayControls.openOverlay}
-        navigationData={navigationData}
+      <MenuButton onClick={overlayControls.openOverlay} />
+      <Logo />
+      <CartButton
+        onClick={cartOverlayControls.openOverlay}
+        ammount={products.reduce((acc, cur) => {
+          return acc + cur.ammount;
+        }, 0)}
       />
-      <RightGroup openCartOverlay={cartOverlayControls.openOverlay} />
+      <Avatar />
       <MenuOverlay {...overlayProps} />
       <CartOverlay {...cartOverlayProps} />
-    </Container>
+    </GridTemplate>
   );
 };
 
-const LeftGroup = ({ openOverlay, navigationData }) => {
+// Elements
+
+const MenuButton = ({ ...props }) => {
+  return (
+    <Button
+      variant="clear"
+      sx={{
+        width: ['1.4rem', '2rem', '2rem'],
+        alignSelf: 'center'
+      }}
+      {...props}
+    >
+      <Image src={menuIcon} sx={{ width: '100%' }} />
+    </Button>
+  );
+};
+
+// assets
+const Logo = () => {
   return (
     <Box
-      className="navigation__left-group"
+      className="navigation__logo"
       sx={{
-        display: "flex",
-        justifyContent: "start",
-        alignItems: "center",
-        flex: "1",
+        width: ['12rem', '14rem', '15rem'],
+        display: 'flex',
+        alignItems: 'center',
+        gridColumn: ['2 / span 5', '2 / span 5', '2 / span 5']
       }}
     >
-      <MenuButton onClick={openOverlay} />
-      <Logo />
-      <Links navigationData={navigationData} />
+      <Image src={logo} sx={{ width: '100%' }} />
     </Box>
   );
 };
 
-const RightGroup = ({ openCartOverlay }) => {
-  const { products } = React.useContext(ProductContext);
-  const getTotalAmmount = () =>
-    products.reduce((acc, cur) => acc + cur.ammount, 0);
+const CartButton = ({ ammount = 0, ...props }) => {
   return (
-    <Box
-      className="navigation__right-group"
+    <Button
+      className="cart-button"
+      variant="clear"
       sx={{
-        display: "flex",
-        justifyContent: "flex-end",
-        alignItems: "center",
+        position: 'relative',
+        width: ['1.8rem', '2rem', '2.3rem'],
+        gridColumn: [11, 11, 22],
+        alignSelf: 'center'
       }}
+      {...props}
     >
-      <CartButton onClick={openCartOverlay} ammount={getTotalAmmount()} />
-      <Avatar />
-    </Box>
+      <Image src={cartIcon} sx={{ width: '100%' }} />
+      <NotificationNumber ammount={ammount} />
+    </Button>
   );
 };
 
-const Links = ({ navigationData }) => {
+const NotificationNumber = ({ ammount }) => {
   return (
-    <Box
-      className="desktop-link"
-      sx={{
-        display: ["none", "none"],
-        alignItems: "center",
-        justifyContent: "start",
-        ml: [null, "1em"],
-      }}
-    >
-      {navigationData.links.map((link) => (
-        <Link
-          key={link.title}
-          href={link.to}
-          variant="navigationLink"
+    <AnimatePresence>
+      {ammount !== 0 && (
+        <Paragraph
           sx={{
-            ":not(:first-of-type)": {
-              ml: "1em",
-            },
+            p: '3px 8px',
+            bg: 'primary',
+            color: 'white',
+            position: 'absolute',
+            top: '-1em',
+            right: '-1em',
+            borderRadius: '8px',
+            fontSize: ['1rem', '1rem']
           }}
+          // Animation Values
+          variants={notification}
+          initial="initial"
+          animate="scaleUp"
+          exit="initial"
         >
-          {link.title}
-        </Link>
-      ))}
+          {ammount}
+        </Paragraph>
+      )}
+    </AnimatePresence>
+  );
+};
+
+const Avatar = () => {
+  return (
+    <Box
+      className="navigation__user-avatar"
+      sx={{
+        aspectRatio: '1/1',
+        borderRadius: '50%',
+        overflow: 'hidden',
+        width: ['2rem', '3rem', '3.2rem'],
+        justifySelf: 'end',
+        alignSelf: 'end',
+        gridColumn: [12, 12, 24]
+      }}
+    >
+      <Image
+        src={avatarImage}
+        sx={{
+          width: '100%'
+        }}
+      />
     </Box>
   );
 };

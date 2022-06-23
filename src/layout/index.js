@@ -1,23 +1,38 @@
-import React from "react";
-
+import React from 'react';
 // Context
-import { ProductContextProvider } from "src/context";
 
 // Local Components
-import { Box, Navigation } from "src/components";
+import { Navigation } from 'components';
+import { Box } from '@gedesurya125/surya-ui';
 
-export const Layout = ({ children }) => {
+// TODO: create the layout tobe high order components
+
+const Layout = ({ children }) => {
   return (
-    <ProductContextProvider>
+    <Box
+      sx={{
+        position: 'relative',
+        overflow: 'hidden'
+      }}
+    >
+      <Navigation />
+      <Box>{children}</Box>
+    </Box>
+  );
+};
+
+export const injectLayout = (WrappedComponent) => {
+  return () => {
+    return (
       <Box
         sx={{
-          position: "relative",
-          overflow: "hidden",
+          position: 'relative',
+          overflow: 'hidden'
         }}
       >
         <Navigation />
-        <Box>{children}</Box>
+        <WrappedComponent />
       </Box>
-    </ProductContextProvider>
-  );
+    );
+  };
 };
