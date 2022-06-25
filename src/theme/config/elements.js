@@ -29,9 +29,9 @@ export const buttons = {
     justifyContent: 'center',
     alignItems: 'center',
     fontFamily: 'primary',
-    fontSize: ['1.3rem', '1.8rem'],
+    fontSize: ['1.7rem', '1.8rem', '1.8rem', '1.3rem'],
     variant: 'text.originalPrice',
-    p: ['1.5rem 1.4rem 1.5rem 1.4rem', '2rem']
+    p: ['1.7rem 1.4rem 1.7rem 1.4rem', '2rem', '2rem', '1.2rem']
   },
   secondary: {},
   clear: {

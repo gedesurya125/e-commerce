@@ -7,7 +7,8 @@ import {
   Heading,
   Paragraph,
   Button,
-  Image
+  Image,
+  Grid
 } from '@gedesurya125/surya-ui';
 
 // Self Components
@@ -21,29 +22,50 @@ import { ProductContext, addToCart, ProductOnCart } from 'context';
 import plusIcon from 'assets/images/icon-plus.svg';
 import minusIcon from 'assets/images/icon-minus.svg';
 import whiteCartIcon from 'assets/images/icon-cart white.svg';
-// TODO: Make the CompanyName, ProductTitle and Description tobe in the One Compent because it stick together
+
 export const ProductOverview = () => {
-  const {
-    images,
-    information: { companyName, title, description }
-  } = productData;
+  const { images } = productData;
 
   return (
     <GridTemplate
       sx={{
-        pb: ['4rem', '6rem', '6rem']
+        pb: ['4rem', '6rem', '6rem', 0],
+        mt: [null, null, null, null, '7rem']
       }}
     >
       <ShowCaseImage data={images} />
-      <CompanyName text={companyName} />
-      <ProductTitle text={title} />
-      <Description text={description} />
-      <ActionBlock />
+      <Box
+        sx={{
+          gridColumn: ['1/13', '1/13', '1/25', '13/25', '14/24'],
+          alignSelf: [null, null, null, 'center', 'center']
+        }}
+      >
+        <InformationBlock />
+        <ActionBlock />
+      </Box>
     </GridTemplate>
   );
 };
 
 // Elements
+
+const InformationBlock = () => {
+  const {
+    information: { companyName, title, description }
+  } = productData;
+  return (
+    <Box
+      className="information-block"
+      sx={{
+        mt: ['2.5rem', '5rem', '5rem', 0, 0, 0]
+      }}
+    >
+      <CompanyName text={companyName} />
+      <ProductTitle text={title} />
+      <Description text={description} />
+    </Box>
+  );
+};
 
 const CompanyName = ({ text }) => {
   return (
@@ -53,10 +75,8 @@ const CompanyName = ({ text }) => {
         textTransform: 'uppercase',
         fontFamily: 'primary',
         lineHeight: 'primary',
-        fontSize: ['1.12rem', '1.6rem', '1.4rem'],
-        letterSpacing: '0.2em',
-        mt: ['4rem', '5rem', '5rem'],
-        gridColumn: ['1/13', '1/13', '1 / span 12']
+        fontSize: ['1.12rem', '1.6rem', '1.6rem', '1.12rem'],
+        letterSpacing: '0.2em'
       }}
     >
       {text}
@@ -70,9 +90,9 @@ const ProductTitle = ({ text }) => {
       sx={{
         color: 'dark',
         fontFamily: 'primary',
-        fontSize: ['3rem', '4rem', '3rem'],
-        mt: ['1rem', '2rem', '2rem'],
-        gridColumn: ['1/13', '1/13', '1 / span 12']
+        fontSize: ['3rem', '4rem', '4rem', '3rem'],
+        mt: ['1rem', '2rem', '2rem', '1rem'],
+        lineHeight: 1.2
       }}
     >
       {text}
@@ -84,10 +104,10 @@ const Description = ({ text }) => {
   return (
     <Paragraph
       sx={{
-        mt: ['1rem', '2rem', '2rem'],
+        mt: ['1.8rem', '2rem', '2rem', '1rem'],
         color: 'darkGray',
-        fontSize: ['1.5rem', '2rem', '2rem'],
-        gridColumn: ['1/13', '1/13', '1 / span 12']
+        fontSize: ['1.5rem', '2rem', '2.3rem', '1.5rem'],
+        lineHeight: 1.6
       }}
     >
       {text}
@@ -119,13 +139,19 @@ const ActionBlock = () => {
     <Box
       className="action-area"
       sx={{
-        mt: ['3rem', '4rem'],
-        gridColumn: ['1/13', '1/13', '1 / 25']
+        mt: ['3rem', '4rem', null, '2rem', '2rem']
       }}
     >
       <PriceBlock price={price * ammount} discount={discount} />
-      <ItemCounter ammount={ammount} setAmmount={setAmmount} />
-      <AddToCartButton onClick={handleAddToCart} />
+      <Grid
+        sx={{
+          gridTemplateColumns: ['1fr', '1fr', '1fr', '1fr 1fr'],
+          mt: [null, null, null, '1.5rem']
+        }}
+      >
+        <ItemCounter ammount={ammount} setAmmount={setAmmount} />
+        <AddToCartButton onClick={handleAddToCart} />
+      </Grid>
     </Box>
   );
 };
@@ -135,7 +161,8 @@ const PriceBlock = ({ price, discount }) => {
       className="price-block"
       sx={{
         display: 'flex',
-        alignItems: 'center',
+        alignItems: ['center', 'center', 'center', 'center', 'flex-start'],
+        flexDirection: ['row', 'row', 'row', 'row', 'column'],
         justifyContent: 'space-between'
       }}
     >
@@ -158,7 +185,7 @@ const PriceAfterDiscount = ({ price, discount }) => {
       <Paragraph
         sx={{
           color: 'dark',
-          fontSize: ['2rem', '3rem'],
+          fontSize: ['2.9rem', '3rem', '3rem', '3rem'],
           fontFamily: 'primary'
         }}
       >{`$${priceAfterDiscount}`}</Paragraph>
@@ -172,9 +199,9 @@ const DiscountBox = ({ discount }) => {
     <Box
       sx={{
         bg: 'secondary',
-        p: ['0.2em 0.5em', '0.5em 0.8em'],
+        p: ['0.2em 0.5em', '0.5em 0.8em', '0.5em 0.8em', '0.5em 0.8em'],
         borderRadius: '0.4rem',
-        ml: ['1.5rem', '2rem']
+        ml: ['1.8rem', '2rem', '2rem', '2rem']
       }}
     >
       <Paragraph
@@ -196,7 +223,7 @@ const OriginalPrice = ({ price }) => {
       variant="originalPrice"
       sx={{
         color: 'gray',
-        fontSize: ['1.5rem', '2rem'],
+        fontSize: ['1.7rem', '2rem', '2rem', '2rem'],
         fontWeight: 'bold'
       }}
     >
@@ -221,16 +248,15 @@ const ItemCounter = ({ ammount, setAmmount }) => {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        mt: ['3rem', '4rem'],
-        py: ['0.5rem', '0.8rem'],
-        gridColumn: ['1/13', '1/13', '1 / 25']
+        mt: ['3rem', '4rem', '4rem', 0],
+        py: ['0.5rem', '0.8rem', '0.8rem', 0]
       }}
     >
       <CountButton icon={minusIcon} onClick={() => handleAmmountChange(-1)} />
       <Paragraph
         sx={{
           fontFamily: 'primary',
-          fontSize: ['1.4rem', '2rem']
+          fontSize: ['1.9rem', '2rem', '2rem', '1.4rem']
         }}
       >
         {ammount}
@@ -246,17 +272,21 @@ const CountButton = ({ icon, ...props }) => {
       variant="clear"
       sx={{
         color: 'primary',
-        fontSize: ['2rem', '3rem'],
-        p: ['1.2rem 1.2rem 1.2rem 1.2rem', '1.5rem 2rem 1.5rem 2rem'],
-        borderRadius: '0.7rem',
-        gridColumn: ['1/13', '1/13', '1 / 25']
+        fontSize: ['2rem', '3rem', '3rem', '2rem'],
+        p: [
+          '1.5rem',
+          '1.5rem 2rem 1.5rem 2rem',
+          '1.5rem 2rem 1.5rem 2rem',
+          '1.5rem'
+        ],
+        borderRadius: '0.7rem'
       }}
       {...props}
     >
       <Image
         src={icon}
         sx={{
-          width: ['1rem', '1.6rem']
+          width: ['1.4rem', '1.6rem', '1.6rem', '1rem']
         }}
       />
     </Button>
@@ -267,14 +297,14 @@ const AddToCartButton = ({ ...props }) => {
   return (
     <Button
       variant="primary"
-      sx={{ width: '100%', mt: '8%', gridColumn: ['1/13', '1/13', '1 / 25'] }}
+      sx={{ width: '100%', mt: ['0.4rem', '2rem', '2rem', 0] }}
       {...props}
     >
       <Image
         src={whiteCartIcon}
         sx={{
-          mr: ['1.3rem', '1.5rem'],
-          width: ['1.6rem', '2rem']
+          mr: ['1.3rem', '1.5rem', '1.5rem', '1.3rem'],
+          width: ['1.6rem', '2rem', '2rem', '1.6rem']
         }}
       />
       <span>Add to cart</span>

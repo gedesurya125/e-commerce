@@ -35,22 +35,23 @@ export const ShowCaseImage = ({ data }) => {
       className="product-image-showcase"
       sx={{
         display: [null, null, 'flex'],
-        gridColumn: ['1 / 13', '1 / 13', '1 / 25']
+        gridColumn: ['1 / 13', '1 / 13', '1 / 25', '1 / 12', '2 / 12']
       }}
     >
       <Box
         className="product-image"
         sx={{
-          aspectRatio: '1.25/1',
+          aspectRatio: ['1.25/1', '1.25/1', '1.25/1', '1.08/1', '1/1'],
           overflow: 'hidden',
           position: 'relative',
           left: 0,
           display: 'flex',
+          flexDirection: ['row', 'row', 'row', 'row', 'column'],
           justifyContent: 'space-between',
           alignItems: 'center',
           mx: ['-8%', '0%'],
           borderRadius: [0, '1rem', '1rem'],
-          flex: [null, null, 1]
+          flex: [null, null, 1, 1]
         }}
       >
         <NavigationButton
@@ -95,11 +96,11 @@ const NavigationButton = ({ icon, sx, isRight, ...props }) => {
     <Button
       variant="circlePrimary"
       sx={{
-        width: ['3.6rem', '10%'],
+        width: ['3.9rem', '6rem', null, '4rem', null, null],
         position: 'relative',
         zIndex: 1,
         mx: '5%',
-        display: [null, null, 'none'],
+        display: [null, null, 'none', 'block', 'none', 'none'],
         ...sx
       }}
       {...props}
@@ -107,7 +108,7 @@ const NavigationButton = ({ icon, sx, isRight, ...props }) => {
       <Image
         src={icon}
         sx={{
-          width: '0.8rem',
+          width: ['1rem', '1.3rem', null, '1rem', null, null],
           transform: `translateX(${isRight ? '10%' : '-15%'})`
         }}
       />
@@ -124,9 +125,11 @@ const NavigationImage = ({
     <Box
       className="navigation-image"
       sx={{
-        display: ['none', 'none', 'block'],
-        width: [null, null, '15%'],
-        ml: [null, null, '5%']
+        display: ['none', 'none', 'block', 'none', 'flex'],
+        width: [null, null, '15%', null, '100%'],
+        ml: [null, null, '5%', null, 0],
+        mt: [null, null, null, null, '2rem'],
+        gap: [null, null, null, null, '2rem']
       }}
     >
       <LayoutGroup>
@@ -160,7 +163,7 @@ const ImageThumbnail = ({
         position: 'relative',
         display: 'flex',
         ':not(:first-of-type)': {
-          mt: '10%'
+          mt: ['10%', '10%', '10%', '10%', 0]
         },
         '& > *': {
           borderRadius: '1rem',
