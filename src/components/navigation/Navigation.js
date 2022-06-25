@@ -16,7 +16,8 @@ import {
   MenuOverlay,
   CartOverlay,
   useMenuOverlay,
-  useCartOverlay
+  useCartOverlay,
+  CartIcon
 } from 'components';
 
 // Context
@@ -44,7 +45,7 @@ export const Navigation = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        py: ['2rem', '2rem', '2rem', '1rem', 0],
+        py: ['2rem', '2rem', '2rem', '1rem', 0, 0],
         borderBottom: ({ colors }) =>
           `clamp(2px, 0.2rem, 3px) solid ${colors.lightGray}`
       }}
@@ -88,7 +89,7 @@ const Logo = () => {
     <Box
       className="navigation__logo"
       sx={{
-        width: ['12rem', '14rem', '15rem', '12rem'],
+        width: ['12rem', '14rem', '15rem', '12rem', '12rem', '15rem'],
         display: 'flex',
         alignItems: 'center',
         gridColumn: [
@@ -96,7 +97,8 @@ const Logo = () => {
           '2 / span 5',
           '2 / span 5',
           '2 / span 5',
-          '1 / span 5'
+          '1 / span 5',
+          '1 / span 4'
         ]
       }}
     >
@@ -110,8 +112,8 @@ const DesktopLinks = ({ data: { links } }) => {
     <Flex
       className="desktop-links"
       sx={{
-        gridColumn: [null, null, null, null, '6 / span 10'],
-        display: ['none', 'none', 'none', 'none', 'flex']
+        gridColumn: [null, null, null, null, '6 / span 10', '5 / span 10'],
+        display: ['none', 'none', 'none', 'none', 'flex', 'flex']
       }}
     >
       {links.map((link) => (
@@ -122,14 +124,15 @@ const DesktopLinks = ({ data: { links } }) => {
             fontFamily: 'primary',
             textDecoration: 'none',
             color: 'gray',
-            py: [null, null, null, null, '3rem'],
+            py: [null, null, null, null, '3rem', '4.1rem'],
+            fontSize: [null, null, null, null, '1.2rem', '1.8rem'],
             ':hover': {
               color: 'darkGray',
               boxShadow: ({ colors }) =>
                 `inset 0 clamp(-3px, -0.3rem, -4px) 0 0 ${colors.primary}`
             },
             ':not(:first-of-type)': {
-              ml: '2.3rem'
+              ml: [null, null, null, null, '2.3rem', '3rem']
             }
           }}
         >
@@ -147,13 +150,16 @@ const CartButton = ({ ammount = 0, ...props }) => {
       variant="clear"
       sx={{
         position: 'relative',
-        width: ['1.8rem', '2rem', '2.3rem', '1.8rem', '1.8rem'],
-        gridColumn: [11, 11, 22, 23],
-        alignSelf: 'center'
+        width: ['1.8rem', '2rem', '2.3rem', '1.8rem', '1.8rem', '2.4rem'],
+        gridColumn: [11, 11, 22, 23, 22, 22],
+        justifySelf: [null, null, null, null, 'end', 'end'],
+        alignSelf: 'center',
+        display: 'flex',
+        alignItems: 'center'
       }}
       {...props}
     >
-      <Image src={cartIcon} sx={{ width: '100%' }} />
+      <CartIcon />
       <NotificationNumber ammount={ammount} />
     </Button>
   );
@@ -195,10 +201,10 @@ const Avatar = () => {
         aspectRatio: '1/1',
         borderRadius: '50%',
         overflow: 'hidden',
-        width: ['2rem', '3rem', '3.2rem', '2rem', '2.5rem'],
+        width: ['2rem', '3rem', '3.2rem', '2rem', '3.6rem', '4.9rem'],
         justifySelf: 'end',
         alignSelf: 'center',
-        gridColumn: [12, 12, 24, 24, 24]
+        gridColumn: [12, 12, 24, 24, 24, 24]
       }}
     >
       <Image

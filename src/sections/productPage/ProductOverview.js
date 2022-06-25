@@ -29,8 +29,8 @@ export const ProductOverview = () => {
   return (
     <GridTemplate
       sx={{
-        pb: ['4rem', '6rem', '6rem', 0],
-        mt: [null, null, null, null, '7rem']
+        pb: ['4rem', '6rem', '6rem', 0, '6rem', '6rem'],
+        mt: [null, null, null, null, '7rem', '8rem']
       }}
     >
       <ShowCaseImage data={images} />
@@ -75,7 +75,7 @@ const CompanyName = ({ text }) => {
         textTransform: 'uppercase',
         fontFamily: 'primary',
         lineHeight: 'primary',
-        fontSize: ['1.12rem', '1.6rem', '1.6rem', '1.12rem'],
+        fontSize: ['1.12rem', '1.6rem', '1.6rem', '1.12rem', '1rem', '1.8rem'],
         letterSpacing: '0.2em'
       }}
     >
@@ -90,9 +90,9 @@ const ProductTitle = ({ text }) => {
       sx={{
         color: 'dark',
         fontFamily: 'primary',
-        fontSize: ['3rem', '4rem', '4rem', '3rem'],
-        mt: ['1rem', '2rem', '2rem', '1rem'],
-        lineHeight: 1.2
+        fontSize: ['3rem', '4rem', '4rem', '3rem', '3.6rem', '5rem'],
+        mt: ['1rem', '2rem', '2rem', '1rem', '1rem', '2rem'],
+        lineHeight: [1.2, null, null, null, 1.1]
       }}
     >
       {text}
@@ -104,9 +104,9 @@ const Description = ({ text }) => {
   return (
     <Paragraph
       sx={{
-        mt: ['1.8rem', '2rem', '2rem', '1rem'],
+        mt: ['1.8rem', '2rem', '2rem', '1rem', '2.6rem', '4.4rem'],
         color: 'darkGray',
-        fontSize: ['1.5rem', '2rem', '2.3rem', '1.5rem'],
+        fontSize: ['1.5rem', '2rem', '2.3rem', '1.5rem', '1.25rem', '1.75rem'],
         lineHeight: 1.6
       }}
     >
@@ -139,14 +139,21 @@ const ActionBlock = () => {
     <Box
       className="action-area"
       sx={{
-        mt: ['3rem', '4rem', null, '2rem', '2rem']
+        mt: ['3rem', '4rem', null, '2rem', '2rem', '3rem']
       }}
     >
       <PriceBlock price={price * ammount} discount={discount} />
       <Grid
         sx={{
-          gridTemplateColumns: ['1fr', '1fr', '1fr', '1fr 1fr'],
-          mt: [null, null, null, '1.5rem']
+          gridTemplateColumns: [
+            '1fr',
+            '1fr',
+            '1fr',
+            '1fr 1fr',
+            '12rem 1fr',
+            '17rem 1fr'
+          ],
+          mt: [null, null, null, '1.5rem', '3rem', '3.5rem']
         }}
       >
         <ItemCounter ammount={ammount} setAmmount={setAmmount} />
@@ -185,7 +192,7 @@ const PriceAfterDiscount = ({ price, discount }) => {
       <Paragraph
         sx={{
           color: 'dark',
-          fontSize: ['2.9rem', '3rem', '3rem', '3rem'],
+          fontSize: ['2.9rem', '3rem', '3rem', '3rem', '2.4rem', '3.4rem'],
           fontFamily: 'primary'
         }}
       >{`$${priceAfterDiscount}`}</Paragraph>
@@ -199,7 +206,13 @@ const DiscountBox = ({ discount }) => {
     <Box
       sx={{
         bg: 'secondary',
-        p: ['0.2em 0.5em', '0.5em 0.8em', '0.5em 0.8em', '0.5em 0.8em'],
+        p: [
+          '0.2em 0.5em',
+          '0.5em 0.8em',
+          '0.5em 0.8em',
+          '0.5em 0.8em',
+          '0.4em 0.8em'
+        ],
         borderRadius: '0.4rem',
         ml: ['1.8rem', '2rem', '2rem', '2rem']
       }}
@@ -209,7 +222,14 @@ const DiscountBox = ({ discount }) => {
         color="primary"
         sx={{
           fontFamily: 'primary',
-          fontSize: ['1.2rem', '1.5rem'],
+          fontSize: [
+            '1.2rem',
+            '1.5rem',
+            '1.5rem',
+            '1.5rem',
+            '1.3rem',
+            '1.6rem'
+          ],
           fontWeight: 'bold'
         }}
       >{`${discount}%`}</Paragraph>
@@ -223,7 +243,8 @@ const OriginalPrice = ({ price }) => {
       variant="originalPrice"
       sx={{
         color: 'gray',
-        fontSize: ['1.7rem', '2rem', '2rem', '2rem'],
+        fontSize: ['1.7rem', '2rem', '2rem', '2rem', '1.2rem', '1.9rem'],
+        mt: [null, null, null, null, '1rem', '1.2rem'],
         fontWeight: 'bold'
       }}
     >
@@ -242,7 +263,7 @@ const ItemCounter = ({ ammount, setAmmount }) => {
     <Box
       className="item-count"
       sx={{
-        bg: 'lightgray',
+        bg: 'lightGray',
         borderRadius: '0.7rem',
         overflow: 'hidden',
         display: 'flex',
@@ -256,7 +277,7 @@ const ItemCounter = ({ ammount, setAmmount }) => {
       <Paragraph
         sx={{
           fontFamily: 'primary',
-          fontSize: ['1.9rem', '2rem', '2rem', '1.4rem']
+          fontSize: ['1.9rem', '2rem', '2rem', '1.4rem', '1.4rem', '2rem']
         }}
       >
         {ammount}
@@ -286,7 +307,7 @@ const CountButton = ({ icon, ...props }) => {
       <Image
         src={icon}
         sx={{
-          width: ['1.4rem', '1.6rem', '1.6rem', '1rem']
+          width: ['1.4rem', '1.6rem', '1.6rem', '1rem', '1rem', '1.5rem']
         }}
       />
     </Button>
@@ -297,14 +318,14 @@ const AddToCartButton = ({ ...props }) => {
   return (
     <Button
       variant="primary"
-      sx={{ width: '100%', mt: ['0.4rem', '2rem', '2rem', 0] }}
+      sx={{ width: '100%', mt: ['0.4rem', '2rem', '2rem', 0, 0, 0] }}
       {...props}
     >
       <Image
         src={whiteCartIcon}
         sx={{
-          mr: ['1.3rem', '1.5rem', '1.5rem', '1.3rem'],
-          width: ['1.6rem', '2rem', '2rem', '1.6rem']
+          mr: ['1.3rem', '1.5rem', '1.5rem', '1.3rem', '1.3rem', '.1.3rem'],
+          width: ['1.6rem', '2rem', '2rem', '1.6rem', '1.6rem', '2rem']
         }}
       />
       <span>Add to cart</span>

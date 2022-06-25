@@ -34,24 +34,24 @@ export const ShowCaseImage = ({ data }) => {
     <Box
       className="product-image-showcase"
       sx={{
-        display: [null, null, 'flex'],
-        gridColumn: ['1 / 13', '1 / 13', '1 / 25', '1 / 12', '2 / 12']
+        display: [null, null, 'flex', 'block', 'block', 'block'],
+        gridColumn: ['1 / 13', '1 / 13', '1 / 25', '1 / 12', '2 / 12', '2 / 12']
       }}
     >
       <Box
         className="product-image"
         sx={{
-          aspectRatio: ['1.25/1', '1.25/1', '1.25/1', '1.08/1', '1/1'],
+          aspectRatio: ['1.25/1', '1.25/1', '1.25/1', '1.08/1', '1/1', '1/1'],
           overflow: 'hidden',
           position: 'relative',
           left: 0,
           display: 'flex',
-          flexDirection: ['row', 'row', 'row', 'row', 'column'],
+          flexDirection: ['row', 'row', 'row', 'row', 'column', 'column'],
           justifyContent: 'space-between',
           alignItems: 'center',
-          mx: ['-8%', '0%'],
-          borderRadius: [0, '1rem', '1rem'],
-          flex: [null, null, 1, 1]
+          mx: ['-8%', 0, 0, 0, 0, 0],
+          borderRadius: [0, '1rem', '1rem', '1rem', '1rem', '1rem'],
+          flex: [null, null, 1, 1, 1, 1]
         }}
       >
         <NavigationButton
@@ -125,11 +125,11 @@ const NavigationImage = ({
     <Box
       className="navigation-image"
       sx={{
-        display: ['none', 'none', 'block', 'none', 'flex'],
-        width: [null, null, '15%', null, '100%'],
-        ml: [null, null, '5%', null, 0],
-        mt: [null, null, null, null, '2rem'],
-        gap: [null, null, null, null, '2rem']
+        display: ['none', 'none', 'block', 'none', 'flex', 'flex'],
+        width: [null, null, '15%', null, '100%', '100%'],
+        ml: [null, null, '5%', null, 0, 0],
+        mt: [null, null, null, null, '2rem', '2rem'],
+        gap: [null, null, null, null, '2rem', '2rem']
       }}
     >
       <LayoutGroup>
@@ -163,7 +163,7 @@ const ImageThumbnail = ({
         position: 'relative',
         display: 'flex',
         ':not(:first-of-type)': {
-          mt: ['10%', '10%', '10%', '10%', 0]
+          mt: ['10%', '10%', '10%', '10%', 0, 0]
         },
         '& > *': {
           borderRadius: '1rem',
