@@ -1,23 +1,14 @@
-export const revealOverlayBackground = {
-  close: {
-    opacity: 0,
-  },
-  open: {
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-    },
-  },
-};
-
 export const revealMenuContainer = {
   close: {
-    x: "-100%",
+    x: '-100%',
+    transition: {
+      duration: 0.3
+    }
   },
   open: {
     x: 0,
     transition: {
-      duration: 0.5,
-    },
-  },
+      duration: 0.3
+    }
+  }
 };

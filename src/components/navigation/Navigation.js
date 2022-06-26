@@ -26,7 +26,6 @@ import { useProductContext } from 'context';
 // Assets
 import menuIcon from 'assets/images/icon-menu.svg';
 import logo from 'assets/images/logo.svg';
-import cartIcon from 'assets/images/icon-cart.svg';
 import avatarImage from 'assets/images/image-avatar.png';
 import { navigationData } from 'data';
 
@@ -45,7 +44,7 @@ export const Navigation = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        py: ['2rem', '2rem', '2rem', '1rem', 0, 0],
+        py: ['2rem', '2rem', '2rem', '2rem', 0, 0],
         borderBottom: ({ colors }) =>
           `clamp(2px, 0.2rem, 3px) solid ${colors.lightGray}`
       }}
@@ -204,7 +203,12 @@ const Avatar = () => {
         width: ['2rem', '3rem', '3.2rem', '2rem', '3.6rem', '4.9rem'],
         justifySelf: 'end',
         alignSelf: 'center',
-        gridColumn: [12, 12, 24, 24, 24, 24]
+        gridColumn: [12, 12, 24, 24, 24, 24],
+        cursor: 'pointer',
+        ':hover': {
+          border: ({ colors }) =>
+            `clamp(2px, 0.2rem, 3px) solid ${colors.primary}`
+        }
       }}
     >
       <Image

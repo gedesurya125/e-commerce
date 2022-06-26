@@ -29,7 +29,7 @@ export const ProductOverview = () => {
   return (
     <GridTemplate
       sx={{
-        pb: ['4rem', '6rem', '6rem', 0, '6rem', '6rem'],
+        pb: ['4rem', '6rem', '6rem', '2rem', '6rem', '6rem'],
         mt: [null, null, null, null, '7rem', '8rem']
       }}
     >

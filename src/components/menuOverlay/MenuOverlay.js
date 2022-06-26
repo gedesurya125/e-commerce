@@ -1,25 +1,31 @@
 import React from 'react';
 
 // Local Components
-import { Overlay } from 'components';
+import { themeConfigs } from 'theme';
 
 // External Components
-import { Box, Button, Image, Link } from '@gedesurya125/surya-ui';
-import { AnimatePresence } from 'framer-motion';
+import { Box, Button, Image, Link, Overlay } from '@gedesurya125/surya-ui';
+import { AnimatePresence, motion } from 'framer-motion';
 
 // Assets
 import closeIcon from 'assets/images/icon-close.svg';
 import { navigationData } from 'data';
 
 // Animation
-import { revealMenuContainer, revealOverlayBackground } from './animation';
+import { revealMenuContainer } from './animation';
+import { revealOverlayBackground } from 'components/animation';
 
 export const MenuOverlay = ({ showOverlay, closeOverlay }) => {
+  console.log(
+    'this is margein Normalizer',
+    themeConfigs.getGridTemplateMarginNormalizers()
+  );
   const { links } = navigationData;
   return (
     <AnimatePresence>
       {showOverlay && (
         <Overlay
+          as={motion.div}
           handleCloseOverlay={closeOverlay}
           // Animation Values
           variants={revealOverlayBackground}
@@ -33,7 +39,7 @@ export const MenuOverlay = ({ showOverlay, closeOverlay }) => {
               width: ['67%', '40%', ''],
               bg: 'white',
               py: '2.5rem',
-              px: '6%'
+              px: themeConfigs.getGridTemplateMargins()
             }}
             variants={revealMenuContainer}
           >
@@ -52,7 +58,7 @@ const Links = ({ links }) => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        mt: '22%'
+        mt: ['3rem', '3rem', '4rem', '3rem']
       }}
     >
       {links.map((link) => (
@@ -62,7 +68,7 @@ const Links = ({ links }) => {
             fontFamily: 'primary',
             textDecoration: 'none',
             color: 'dark',
-            fontSize: '1.5rem',
+            fontSize: ['1.5rem', '1.8rem', '2rem'],
             py: ['1rem']
           }}
         >
@@ -78,11 +84,11 @@ const CloseButton = ({ ...props }) => {
     <Button
       variant="clear"
       sx={{
-        width: '2rem'
+        width: ['1.5rem', '2rem', '2rem', '1.3rem']
       }}
       {...props}
     >
-      <Image src={closeIcon} />
+      <Image src={closeIcon} sx={{ width: '100%' }} />
     </Button>
   );
 };

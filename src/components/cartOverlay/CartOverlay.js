@@ -1,42 +1,65 @@
 import React from 'react';
 
 // External Components
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
   Box,
   Divider,
   Heading,
   Paragraph,
   Button,
-  Image
+  Image,
+  Overlay
 } from '@gedesurya125/surya-ui';
 // Local Components
-import { Overlay } from 'components';
 
 import { removeFromCart, ProductContext } from 'context';
+import { themeConfigs } from 'theme';
+
+// Animation
+import { slideDownOverlay } from './animation';
+import { revealOverlayBackground } from 'components/animation';
 
 // Assets
 import deleteIcon from 'assets/images/icon-delete.svg';
 
 export const CartOverlay = ({ showOverlay, closeOverlay, products }) => {
+  const gridTemplatemargins = themeConfigs.getGridTemplateMargins();
   return (
     <AnimatePresence>
       {showOverlay && (
         <Overlay
+          as={motion.div}
           handleCloseOverlay={closeOverlay}
+          variants={revealOverlayBackground}
+          initial="close"
+          animate="open"
+          exit="close"
           sx={{
             display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'flex-start'
+            justifyContent: ['center', 'center', 'flex-end', 'flex-end'],
+            alignItems: 'flex-start',
+            bg: 'transparent'
           }}
         >
           <Box
+            as={motion.div}
+            variants={slideDownOverlay}
             className="cart"
             sx={{
               bg: 'white',
-              width: '95%',
+              width: ['95%', '38rem', '38rem', '38rem', '30rem', '35rem'],
               borderRadius: '0.6rem',
-              mt: '10rem'
+              mt: ['10rem', '10rem', '7rem', '7rem', '7rem', '12rem'],
+              mr: [
+                null,
+                null,
+                gridTemplatemargins[2],
+                gridTemplatemargins[3],
+                '6rem',
+                '8rem'
+              ],
+              filter: 'drop-shadow(0.1rem 1rem 1rem rgba(0,0,0,0.6))'
             }}
           >
             <TitleBar />
@@ -61,7 +84,7 @@ const TitleBar = () => {
       <Heading
         as="h3"
         sx={{
-          fontSize: '1.3rem',
+          fontSize: ['1.5rem', '2rem', '2rem', '2rem', '1.5rem'],
           fontFamily: 'primary'
         }}
       >
@@ -76,7 +99,7 @@ const Basket = ({ products }) => {
       return (
         <>
           {products.map((product) => (
-            <ItemCard data={product} />
+            <ItemCard key={product.id} data={product} />
           ))}
           <Button variant="primary" sx={{ width: '100%', mt: '1.8em' }}>
             Checkout
@@ -88,10 +111,10 @@ const Basket = ({ products }) => {
       <Paragraph
         sx={{
           color: 'darkGray',
-          lineHeight: '9em',
+          lineHeight: ['9em', null, null, null, '12rem', '15rem'],
           textAlign: 'center',
           fontFamily: 'primary',
-          fontSize: '1.5rem'
+          fontSize: ['1.5rem', null, null, null, null, '1.6rem']
         }}
       >
         Your cart is empty
@@ -126,7 +149,7 @@ const ItemCard = ({ data: { id, image, name, price = 0, ammount } }) => {
       />
       <Box
         sx={{
-          width: '60%',
+          width: ['60%', '60%', '60%', '60%', '70%'],
           justifySelf: 'flex-start',
           ml: '5%'
         }}
@@ -137,7 +160,7 @@ const ItemCard = ({ data: { id, image, name, price = 0, ammount } }) => {
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             color: 'darkGray',
-            fontSize: '1.5rem'
+            fontSize: ['1.5rem', '1.9rem', '1.9rem', '1.9rem', '1.5rem']
           }}
         >
           {name}
@@ -145,7 +168,7 @@ const ItemCard = ({ data: { id, image, name, price = 0, ammount } }) => {
         <Paragraph
           sx={{
             mt: ['0.3rem'],
-            fontSize: '1.3rem',
+            fontSize: ['1.3rem', '1.6rem', '1.6rem', '1.6rem', '1.3rem'],
             color: 'darkGray',
             '& > span': {
               color: 'dark',
@@ -159,10 +182,13 @@ const ItemCard = ({ data: { id, image, name, price = 0, ammount } }) => {
       </Box>
       <Button
         variant="clear"
-        sx={{ ml: 'auto', width: '1.2rem' }}
+        sx={{
+          ml: 'auto',
+          width: ['1.2rem', '1.5rem', '1.5rem', '1.5rem', '1.2rem']
+        }}
         onClick={handleDeleteItem}
       >
-        <Image src={deleteIcon} />
+        <Image src={deleteIcon} sx={{ width: '100%' }} />
       </Button>
     </Box>
   );

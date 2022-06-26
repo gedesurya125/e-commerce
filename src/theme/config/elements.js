@@ -37,7 +37,7 @@ export const buttons = {
       '2rem 2rem 2rem 2rem',
       '1.2rem 1.2rem 1.2rem 1.2rem',
       '1.3rem 1.3rem 1.3rem 1.3rem',
-      '2.1rem'
+      '1.9rem'
     ]
   },
   secondary: {},
