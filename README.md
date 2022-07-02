@@ -14,7 +14,6 @@ This is a solution to the [E-commerce product page challenge on Frontend Mentor]
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -45,73 +44,52 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Github](https://github.com/gedesurya125/e-commerce)
+- Live Site URL: [Live Site Url](https://surya-product-page.netlify.app/)
 
 ## My process
 
+1. Building theme template and also publish it into npm called @gedesurya125/surya-ui
+2. Creating the project folowing the mobile first workflow
+3. Creating image slider and cart functionality
+4. Fixing bug and touch up the design
+5. Deploy
+
 ### Built with
 
-- Semantic HTML5 markup
-- CSS custom properties
+- [Theme-ui](https://theme-ui.com/)
+- [Framer Motion](https://www.framer.com/motion/)
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+this is my code samples that i'am proud of:
 
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
+```ts
+export const getResponsiveSize = (
+  breakpointsScreenSize: number,
+  growRatio: ThemeConfigs['growRatio'],
+  normalizedRemValue: ThemeConfigs['normalizedRemValue']
+) =>
+  `calc(${growRatio} / ${breakpointsScreenSize} * (100vw - ${breakpointsScreenSize}px) + ${normalizedRemValue}px)`;
 ```
 
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉');
-};
-```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+This code located in my new Ui package called @gedesurya125/surya-ui, this code create the responsive value based on physics acceleration formula. it makes the rem value grow with screen size, and you can customize the ratio of the grow
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+currently it use React Context to save the state of the cart, in the future i will try to use other state management as if the project growing
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [media query css](https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/) - This helped me to get correct breakpoints. I really liked this pattern and will use it going forward.
+- [Js Media Qyert](https://www.w3schools.com/howto/howto_js_media_queries.asp) - This pattern help me to create responsive media queries using js
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- Github - [I Gede Surya Adi Pranata](https://github.com/gedesurya125)
+- Frontend Mentor - [@gedesurya125](https://www.frontendmentor.io/profile/gedesurya125)
+- Likedin - [I Gede Surya Adi Pranata](https://www.linkedin.com/in/i-gede-surya-adi-pranata-9a2853213/)
