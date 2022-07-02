@@ -12,9 +12,6 @@ import {
 // Local Components
 import { GalleryOverlay, useGalleryOverlay } from '../galleryOverlay';
 import { NextIcon, PrevIcon } from 'components';
-// Assets
-// import nextIcon from 'assets/images/icon-next.svg';
-// import prevIcon from 'assets/images/icon-previous.svg';
 
 // Animation
 import { imageSlideAnimation } from './animation';
