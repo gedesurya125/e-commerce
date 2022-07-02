@@ -53,6 +53,7 @@ export const Navigation = () => {
       <Logo />
       <DesktopLinks data={navigationData} />
       <CartButton
+        isOverlayOpen={cartOverlayProps.showOverlay}
         onClick={cartOverlayControls.openOverlay}
         ammount={products.reduce((acc, cur) => {
           return acc + cur.ammount;
@@ -142,7 +143,7 @@ const DesktopLinks = ({ data: { links } }) => {
   );
 };
 
-const CartButton = ({ ammount = 0, ...props }) => {
+const CartButton = ({ isOverlayOpen, ammount = 0, ...props }) => {
   return (
     <Button
       className="cart-button"
@@ -154,7 +155,13 @@ const CartButton = ({ ammount = 0, ...props }) => {
         justifySelf: [null, null, null, null, 'end', 'end'],
         alignSelf: 'center',
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        '& path': {
+          fill: isOverlayOpen ? 'darkGray' : 'gray'
+        },
+        ':hover path': {
+          fill: 'primary'
+        }
       }}
       {...props}
     >

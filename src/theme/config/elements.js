@@ -51,6 +51,7 @@ export const buttons = {
     alignItems: 'center'
   },
   circlePrimary: {
+    ...buttonDefaults,
     bg: 'white',
     color: 'darkGray',
     display: 'flex',

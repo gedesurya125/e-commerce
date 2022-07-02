@@ -63,8 +63,8 @@ export const GalleryOverlay = ({ data, closeOverlay, isShown }) => {
                     '1.25/1',
                     '1.25/1',
                     '1.08/1',
-                    '1.08/1',
-                    '1.08/1'
+                    '1/1',
+                    '1/1'
                   ],
                   borderRadius: [null, null, null, null, '1rem', '2rem']
                 }}
@@ -118,21 +118,24 @@ const CloseButton = ({ ...props }) => (
 const GalleryNavigationButton = ({ isRight, control }) => {
   const styles = isRight
     ? {
-        right: [null, null, null, null, '-2rem', '-3rem']
+        right: [null, null, null, null, '-2.3rem', '-3rem']
       }
     : {
-        left: [null, null, null, null, '-2rem', '-3rem']
+        left: [null, null, null, null, '-2.3rem', '-3rem']
       };
   return (
     <NavigationButton
       isRight={isRight}
       controls={control}
       sx={{
-        display: [null, null, null, null, 'block', 'block'],
+        display: [null, null, null, null, 'flex', 'flex'],
         mx: 0,
-        width: [null, null, null, null, '4rem', '6rem'],
+        width: [null, null, null, null, '4.6rem', '6rem'],
 
         position: 'absolute',
+        ':hover path': {
+          stroke: 'primary'
+        },
         ...styles
       }}
     />

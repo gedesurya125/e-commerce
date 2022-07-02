@@ -11,9 +11,10 @@ import {
 
 // Local Components
 import { GalleryOverlay, useGalleryOverlay } from '../galleryOverlay';
+import { NextIcon, PrevIcon } from 'components';
 // Assets
-import nextIcon from 'assets/images/icon-next.svg';
-import prevIcon from 'assets/images/icon-previous.svg';
+// import nextIcon from 'assets/images/icon-next.svg';
+// import prevIcon from 'assets/images/icon-previous.svg';
 
 // Animation
 import { imageSlideAnimation } from './animation';
@@ -129,7 +130,9 @@ export const NavigationButton = ({ sx, isRight, controls, ...props }) => {
         position: 'relative',
         zIndex: 1,
         mx: '5%',
-        display: [null, null, 'none', 'block', 'none', 'none'],
+        display: [null, null, 'none', 'flex', 'none', 'none'],
+        alignItems: 'center',
+        '& > svg': {},
         ...sx
       }}
       onClick={
@@ -139,13 +142,24 @@ export const NavigationButton = ({ sx, isRight, controls, ...props }) => {
       }
       {...props}
     >
-      <Image
+      <Box
+        sx={{
+          width: ['1rem', '1.3rem', null, '1rem', '1rem', '1.5rem'],
+          transform: `translateX(${isRight ? '10%' : '-15%'})`,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        {isRight ? <NextIcon /> : <PrevIcon />}
+      </Box>
+      {/* <Image
         src={isRight ? nextIcon : prevIcon}
         sx={{
           width: ['1rem', '1.3rem', null, '1rem', null, null],
           transform: `translateX(${isRight ? '10%' : '-15%'})`
         }}
-      />
+      /> */}
     </Button>
   );
 };
