@@ -2,9 +2,15 @@ import React from 'react';
 
 // External Components
 import { AnimatePresence, LayoutGroup } from 'framer-motion';
-// Local Components
-import { Box, Image, Button } from '@gedesurya125/surya-ui';
+import {
+  Box,
+  Image,
+  Button,
+  useActiveBreakpoints
+} from '@gedesurya125/surya-ui';
 
+// Local Components
+import { GalleryOverlay, useGalleryOverlay } from '../galleryOverlay';
 // Assets
 import nextIcon from 'assets/images/icon-next.svg';
 import prevIcon from 'assets/images/icon-previous.svg';
@@ -12,86 +18,109 @@ import prevIcon from 'assets/images/icon-previous.svg';
 // Animation
 import { imageSlideAnimation } from './animation';
 
-export const ShowCaseImage = ({ data }) => {
-  const [[currentImageIndex, direction], setCurrentPage] = React.useState([
-    0, 0
-  ]);
+// functionality hook
+import { useImageSlider } from './useImageSlider';
 
-  const handleNavigationClick = (direction) => {
-    let newImageIndex = currentImageIndex + direction;
-    if (newImageIndex > data.length - 1) {
-      newImageIndex = 0;
-    } else if (newImageIndex < 0) {
-      newImageIndex = data.length - 1;
-    }
-    setCurrentPage([newImageIndex, direction]);
-  };
+// Helper
 
-  const handleNavigationImageClick = (newImageIndex, lastImageIndex) => {
-    setCurrentPage([newImageIndex, newImageIndex - lastImageIndex]);
-  };
+export const ShowCaseImage = ({ data, sx }) => {
+  const activeBreakpoints = useActiveBreakpoints();
+  console.log('activeBreakpoints', activeBreakpoints);
+  const [currentImageIndex, direction, controls] = useImageSlider(data);
+  const [overlayProps, overlayControls] = useGalleryOverlay();
+  return (
+    <ShowCaseContainer sx={sx}>
+      <ImageAndButtonContainer
+        onClick={activeBreakpoints[4] && overlayControls.openOverlay}
+      >
+        <NavigationButton isRight={false} controls={controls} />
+        <AnimatedImageSlide
+          direction={direction}
+          currentImage={data[currentImageIndex].hiRes}
+        />
+        <NavigationButton isRight={true} controls={controls} />
+      </ImageAndButtonContainer>
+      <NavigationImage
+        images={data}
+        handleNavigationImageClick={controls.handleNavigationImageClick}
+        currentImageIndex={currentImageIndex}
+      />
+      <GalleryOverlay {...overlayProps} />
+    </ShowCaseContainer>
+  );
+};
+
+// Reused Components
+export const ShowCaseContainer = ({ children, sx }) => {
   return (
     <Box
       className="product-image-showcase"
       sx={{
         display: [null, null, 'flex', 'block', 'block', 'block'],
-        gridColumn: ['1 / 13', '1 / 13', '1 / 25', '1 / 12', '2 / 12', '2 / 12']
+        gridColumn: [
+          '1 / 13',
+          '1 / 13',
+          '1 / 25',
+          '1 / 12',
+          '2 / 12',
+          '2 / 12'
+        ],
+        ...sx
       }}
     >
-      <Box
-        className="product-image"
-        sx={{
-          aspectRatio: ['1.25/1', '1.25/1', '1.25/1', '1.08/1', '1/1', '1/1'],
-          overflow: 'hidden',
-          position: 'relative',
-          left: 0,
-          display: 'flex',
-          flexDirection: ['row', 'row', 'row', 'row', 'column', 'column'],
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          mx: ['-8%', 0, 0, 0, 0, 0],
-          borderRadius: [0, '1rem', '1rem', '1rem', '1rem', '1rem'],
-          flex: [null, null, 1, 1, 1, 1]
-        }}
-      >
-        <NavigationButton
-          icon={prevIcon}
-          onClick={() => handleNavigationClick(-1)}
-        />
-        <AnimatePresence custom={direction} initial={false}>
-          <Image
-            sx={{ position: 'absolute' }}
-            alt="product-image"
-            // Aimateion Value
-            key={data[currentImageIndex].hiRes}
-            initial="initial"
-            animate="center"
-            exit="exit"
-            custom={direction}
-            src={data[currentImageIndex].hiRes}
-            variants={imageSlideAnimation}
-            transition={{
-              duration: 0.5
-            }}
-          />
-        </AnimatePresence>
-        <NavigationButton
-          icon={nextIcon}
-          onClick={() => handleNavigationClick(1)}
-          isRight={true}
-        />
-      </Box>
-      <NavigationImage
-        images={data}
-        handleNavigationImageClick={handleNavigationImageClick}
-        currentImageIndex={currentImageIndex}
-      />
+      {children}
     </Box>
   );
 };
 
-// Reused Components
-const NavigationButton = ({ icon, sx, isRight, ...props }) => {
+export const ImageAndButtonContainer = ({ onClick, children, sx }) => {
+  return (
+    <Box
+      onClick={onClick}
+      className="product-image"
+      sx={{
+        aspectRatio: ['1.25/1', '1.25/1', '1.25/1', '1.08/1', '1/1', '1/1'],
+        overflow: 'hidden',
+        position: 'relative',
+        left: 0,
+        display: 'flex',
+        flexDirection: ['row', 'row', 'row', 'row', 'column', 'column'],
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        mx: ['-8%', 0, 0, 0, 0, 0],
+        borderRadius: [0, '1rem', '1rem', '1rem', '1rem', '1rem'],
+        flex: [null, null, 1, 1, 1, 1],
+        ...sx
+      }}
+    >
+      {children}
+    </Box>
+  );
+};
+
+export const AnimatedImageSlide = ({ direction, currentImage, sx }) => {
+  return (
+    <AnimatePresence custom={direction} initial={false}>
+      <Image
+        sx={{ position: 'absolute', ...sx }}
+        alt="product-image"
+        // Aimateion Value
+        key={currentImage}
+        initial="initial"
+        animate="center"
+        exit="exit"
+        custom={direction}
+        src={currentImage}
+        variants={imageSlideAnimation}
+        transition={{
+          duration: 0.5
+        }}
+      />
+    </AnimatePresence>
+  );
+};
+
+export const NavigationButton = ({ sx, isRight, controls, ...props }) => {
   return (
     <Button
       variant="circlePrimary"
@@ -103,10 +132,15 @@ const NavigationButton = ({ icon, sx, isRight, ...props }) => {
         display: [null, null, 'none', 'block', 'none', 'none'],
         ...sx
       }}
+      onClick={
+        isRight
+          ? () => controls.handleNavigationClick(1)
+          : () => controls.handleNavigationClick(-1)
+      }
       {...props}
     >
       <Image
-        src={icon}
+        src={isRight ? nextIcon : prevIcon}
         sx={{
           width: ['1rem', '1.3rem', null, '1rem', null, null],
           transform: `translateX(${isRight ? '10%' : '-15%'})`
@@ -116,10 +150,11 @@ const NavigationButton = ({ icon, sx, isRight, ...props }) => {
   );
 };
 
-const NavigationImage = ({
+export const NavigationImage = ({
   images,
   handleNavigationImageClick,
-  currentImageIndex
+  currentImageIndex,
+  sx
 }) => {
   return (
     <Box
@@ -129,7 +164,8 @@ const NavigationImage = ({
         width: [null, null, '15%', null, '100%', '100%'],
         ml: [null, null, '5%', null, 0, 0],
         mt: [null, null, null, null, '2rem', '2rem'],
-        gap: [null, null, null, null, '2rem', '2rem']
+        gap: [null, null, null, null, '2rem', '2rem'],
+        ...sx
       }}
     >
       <LayoutGroup>

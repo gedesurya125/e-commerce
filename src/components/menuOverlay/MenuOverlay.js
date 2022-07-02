@@ -16,10 +16,6 @@ import { revealMenuContainer } from './animation';
 import { revealOverlayBackground } from 'components/animation';
 
 export const MenuOverlay = ({ showOverlay, closeOverlay }) => {
-  console.log(
-    'this is margein Normalizer',
-    themeConfigs.getGridTemplateMarginNormalizers()
-  );
   const { links } = navigationData;
   return (
     <AnimatePresence>
