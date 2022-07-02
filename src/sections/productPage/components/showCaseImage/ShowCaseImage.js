@@ -33,6 +33,9 @@ export const ShowCaseImage = ({ data, sx }) => {
     <ShowCaseContainer sx={sx}>
       <ImageAndButtonContainer
         onClick={activeBreakpoints[4] && overlayControls.openOverlay}
+        sx={{
+          cursor: [null, null, null, null, 'pointer', 'pointer']
+        }}
       >
         <NavigationButton isRight={false} controls={controls} />
         <AnimatedImageSlide
@@ -153,13 +156,6 @@ export const NavigationButton = ({ sx, isRight, controls, ...props }) => {
       >
         {isRight ? <NextIcon /> : <PrevIcon />}
       </Box>
-      {/* <Image
-        src={isRight ? nextIcon : prevIcon}
-        sx={{
-          width: ['1rem', '1.3rem', null, '1rem', null, null],
-          transform: `translateX(${isRight ? '10%' : '-15%'})`
-        }}
-      /> */}
     </Button>
   );
 };
