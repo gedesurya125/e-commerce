@@ -103,7 +103,7 @@ export const AnimatedImageSlide = ({ direction, currentImage, sx }) => {
   return (
     <AnimatePresence custom={direction} initial={false}>
       <Image
-        sx={{ position: 'absolute', ...sx }}
+        sx={{ position: 'absolute', ...sx, width: '100%' }}
         alt="product-image"
         // Aimateion Value
         key={currentImage}
@@ -172,6 +172,7 @@ export const NavigationImage = ({
         ml: [null, null, '5%', null, 0, 0],
         mt: [null, null, null, null, '2rem', '2rem'],
         gap: [null, null, null, null, '2rem', '2rem'],
+        justifyContent: 'center',
         ...sx
       }}
     >
